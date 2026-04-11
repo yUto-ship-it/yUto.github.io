@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Zawgyi Tracker - ခေတ်မီအသုံးစရိတ်စာရင်း</title>
+    <!-- Google Fonts & Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- html2pdf Library (for PDF export) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #e9f0fc 0%, #f1f5f9 100%);
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, 'Myanmar Text', sans-serif;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        /* modern container */
+        .app-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* header area */
+        .modern-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-area h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1F3A5F, #2E5A88);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-area p {
+            color: #4a627a;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 14px;
+        }
+
+        .btn-pdf {
+            background: #1e293b;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-pdf:hover {
+            background: #0f172a;
+            transform: translateY(-2px);
+        }
+
+        .btn-reset {
+            background: #fff0f0;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+            padding: 10px 20px;
+            border-radius: 60px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-reset:hover {
+            background: #fee2e2;
+        }
+
+        /* dashboard cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            padding: 1.3rem 1.5rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.2s;
+        }
+
+        .stat-card.balance {
+            background: linear-gradient(125deg, #1f4870, #1b3b5c);
+            color: white;
+            border: none;
+        }
+
+        .stat-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            opacity: 0.7;
+            margin-bottom: 8px;
+        }
+
+        .stat-number {
+            font-size: 2.4rem;
+            font-weight: 800;
+            word-break: break-word;
+        }
+
+        .stat-sub {
+            font-size: 0.75rem;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+
+        /* add transaction panel - glassmorphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border-radius: 40px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .input-modern {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .input-modern label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .input-modern input,
+        .input-modern select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 28px;
+            border: 1px solid #e2e8f0;
+            background: white;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .input-modern input:focus,
+        .input-modern select:focus {
+            border-color: #2e5a88;
+            box-shadow: 0 0 0 3px rgba(46, 90, 136, 0.2);
+        }
+
+        .btn-add {
+            background: #2e5a88;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+            margin-top: 22px;
+        }
+
+        .btn-add:hover {
+            background: #1f4870;
+            transform: scale(0.97);
+        }
+
+        /* filter chips */
+        .filter-section {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1.4rem;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            background: #f1f5f9;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .chip.active {
+            background: #1e3a5f;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .chip:hover:not(.active) {
+            background: #e2e8f0;
+        }
+
+        /* transaction list - modern cards */
+        .transaction-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 460px;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+
+        .tx-item {
+            background: white;
+            border-radius: 28px;
+            padding: 1rem 1.3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
+            border: 1px solid #edf2f7;
+        }
+
+        .tx-left {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .tx-title {
+            font-weight: 700;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tx-category {
+            font-size: 0.7rem;
+            background: #eef2ff;
+            padding: 3px 12px;
+            border-radius: 40px;
+            width: fit-content;
+            color: #1e3a5f;
+        }
+
+        .tx-date {
+            font-size: 0.7rem;
+            color: #6c86a3;
+        }
+
+        .tx-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .tx-amount {
+            font-weight: 800;
+            font-size: 1.3rem;
+        }
+
+        .expense {
+            color: #dc2626;
+        }
+
+        .income {
+            color: #16a34a;
+        }
+
+        .delete-icon {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 8px;
+            border-radius: 50%;
+        }
+
+        .delete-icon:hover {
+            color: #ef4444;
+            background: #fee2e2;
+        }
+
+        .empty-list {
+            text-align: center;
+            padding: 3rem;
+            background: #f8fafc;
+            border-radius: 48px;
+            color: #6c86a3;
+        }
+
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #5f7f9e;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .tx-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .tx-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-wrapper">
+        <div class="modern-header">
+            <div class="logo-area">
+                <h1><i class="fas fa-wallet" style="color:#2e5a88;"></i> စာရင်းချပေး</h1>
+                <p>ခေတ်မီငွေစာရင်း • လုံခြုံစိတ်ချရ</p>
+            </div>
+            <div class="action-buttons">
+                <button class="btn-pdf" id="exportPDFbtn"><i class="fas fa-file-pdf"></i> PDF ထုတ်မည်</button>
+                <button class="btn-reset" id="resetDemoBtn"><i class="fas fa-trash-alt"></i> အားလုံးဖျက်</button>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card balance">
+                <div class="stat-title">လက်ကျန်ငွေ</div>
+                <div class="stat-number" id="balanceTotal">0</div>
+                <div class="stat-sub">ကျပ် (MMK)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title"><i class="fas fa-arrow-up"></i> စုစုဝင်ငွေ</div>
+                <div class="stat-number" id="totalIncome">0</div>
+                <div class="stat-sub">ကျပ်</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title"><i class="fas fa-arrow-down"></i> စုစုသုံးစရိတ်</div>
+                <div class="stat-number" id="totalExpense">0</div>
+                <div class="stat-sub">ကျပ်</div>
+            </div>
+        </div>
+
+        <!-- Add new transaction -->
+        <div class="glass-panel">
+            <div class="form-row">
+                <div class="input-modern">
+                    <label><i class="fas fa-tag"></i> အမျိုးအစား</label>
+                    <select id="txType">
+                        <option value="expense">📉 အသုံးစရိတ်</option>
+                        <option value="income">📈 ဝင်ငွေ</option>
+                    </select>
+                </div>
+                <div class="input-modern">
+                    <label><i class="fas fa-coins"></i> ငွေပမာဏ (ကျပ်)</label>
+                    <input type="number" id="txAmount" placeholder="ဥပမာ 25000">
+                </div>
+                <div class="input-modern">
+                    <label><i class="fas fa-pen"></i> ဖော်ပြချက်</label>
+                    <input type="text" id="txDesc" placeholder="ထမင်းစရိတ်၊ လစာ...">
+                </div>
+                <div class="input-modern">
+                    <label><i class="fas fa-list"></i> အမျိုးအစားခွဲ</label>
+                    <select id="txCategory">
+                        <option value="စားသောက်ရေး">🍜 စားသောက်ရေး</option>
+                        <option value="ခရီးသွား">🚗 ခရီးသွား</option>
+                        <option value="ဈေးဝယ်">🛍️ ဈေးဝယ်</option>
+                        <option value="ကျန်းမာရေး">💊 ကျန်းမာရေး</option>
+                        <option value="အိမ်ရာ">🏠 အိမ်ရာ</option>
+                        <option value="ဝင်ငွေ">💼 ဝင်ငွေ</option>
+                        <option value="အခြား">📌 အခြား</option>
+                    </select>
+                </div>
+                <div class="input-modern">
+                    <button class="btn-add" id="addTxBtn"><i class="fas fa-plus-circle"></i> မှတ်မည်</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter chips -->
+        <div class="filter-section">
+            <div class="chip active" data-filter="all">အားလုံး</div>
+            <div class="chip" data-filter="expense">အသုံးစရိတ်</div>
+            <div class="chip" data-filter="income">ဝင်ငွေ</div>
+        </div>
+
+        <!-- Transaction history list -->
+        <div class="transaction-list" id="txListContainer">
+            <div class="empty-list">✨ မှတ်တမ်းများ ဤနေရာတွင် ပေါ်လာမည်။ အပေါ်မှ ထည့်ပါ။</div>
+        </div>
+        <footer>✅ ဒေတာအားလုံး သင့်ဘရောက်ဆာ (LocalStorage) တွင် သိမ်းဆည်းထားသည်။ စာမျက်နှာပိတ်ပါလည်း မပျက်ပါ။</footer>
+    </div>
+
+    <?php 
+    echo 'hello';
+    ?>
+    <script>
+        // ---------- STORAGE ----------
+        const STORAGE_KEY = "Zawgyi_Modern_Expense";
+        let transactions = [];  // each: { id, type, amount, description, category, date }
+
+        // current filter
+        let currentFilter = "all";
+
+        // ---------- helper ----------
+        function loadData() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored) {
+                try {
+                    transactions = JSON.parse(stored);
+                    if (!Array.isArray(transactions)) transactions = [];
+                    // ensure each has date
+                    transactions.forEach(t => { if (!t.date) t.date = new Date().toISOString(); });
+                } catch (e) { transactions = []; }
+            }
+            if (transactions.length === 0) {
+                // add sample modern transactions
+                transactions = [
+                    { id: Date.now() + 101, type: "income", amount: 650000, description: "လစာ (ဇန်နဝါရီ)", category: "ဝင်ငွေ", date: new Date().toISOString() },
+                    { id: Date.now() + 102, type: "expense", amount: 45000, description: "ဈေးဝယ်", category: "ဈေးဝယ်", date: new Date(Date.now() - 86400000).toISOString() },
+                    { id: Date.now() + 103, type: "expense", amount: 12000, description: "ထမင်းစား", category: "စားသောက်ရေး", date: new Date(Date.now() - 172800000).toISOString() },
+                ];
+                saveToLocal();
+            }
+        }
+
+        function saveToLocal() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
+        }
+
+        // update stats and re-render
+        function updateUI() {
+            let totalIncome = 0, totalExpense = 0;
+            transactions.forEach(t => {
+                if (t.type === "income") totalIncome += t.amount;
+                else totalExpense += t.amount;
+            });
+            const balance = totalIncome - totalExpense;
+            document.getElementById("balanceTotal").innerText = balance.toLocaleString('en-US');
+            document.getElementById("totalIncome").innerText = totalIncome.toLocaleString('en-US');
+            document.getElementById("totalExpense").innerText = totalExpense.toLocaleString('en-US');
+
+            renderTransactionList();
+        }
+
+        function renderTransactionList() {
+            const container = document.getElementById("txListContainer");
+            let filtered = [...transactions];
+            if (currentFilter === "expense") filtered = filtered.filter(t => t.type === "expense");
+            if (currentFilter === "income") filtered = filtered.filter(t => t.type === "income");
+
+            filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="empty-list"><i class="fas fa-receipt"></i> မှတ်တမ်းမရှိသေးပါ။ အသစ်ထည့်ပါ။</div>`;
+                return;
+            }
+
+            let html = "";
+            for (let tx of filtered) {
+                const amountStr = tx.amount.toLocaleString('en-US');
+                const sign = tx.type === "expense" ? "- " : "+ ";
+                const amountClass = tx.type === "expense" ? "expense" : "income";
+                const formattedDate = new Date(tx.date).toLocaleString('my-MM', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+                html += `
+                <div class="tx-item" data-id="${tx.id}">
+                    <div class="tx-left">
+                        <div class="tx-title">
+                            <span>${escapeHtml(tx.description)}</span>
+                        </div>
+                        <div class="tx-category">${escapeHtml(tx.category)}</div>
+                        <div class="tx-date"><i class="far fa-calendar-alt"></i> ${formattedDate}</div>
+                    </div>
+                    <div class="tx-right">
+                        <div class="tx-amount ${amountClass}">${sign}${amountStr} ကျပ်</div>
+                        <button class="delete-icon" data-id="${tx.id}"><i class="fas fa-trash-can"></i></button>
+                    </div>
+                </div>
+            `;
+            }
+            container.innerHTML = html;
+            // attach delete events
+            document.querySelectorAll('.delete-icon').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = parseInt(btn.getAttribute('data-id'));
+                    deleteTransactionById(id);
+                });
+            });
+        }
+
+        function deleteTransactionById(id) {
+            transactions = transactions.filter(t => t.id !== id);
+            saveToLocal();
+            updateUI();
+        }
+
+        function addNewTransaction() {
+            const type = document.getElementById("txType").value;
+            let amount = parseFloat(document.getElementById("txAmount").value);
+            const description = document.getElementById("txDesc").value.trim();
+            let category = document.getElementById("txCategory").value;
+
+            if (!description) {
+                alert("ကျေးဇူးပြု၍ ဖော်ပြချက် ထည့်ပါ။");
+                return false;
+            }
+            if (isNaN(amount) || amount <= 0) {
+                alert("မှန်ကန်သောငွေပမာဏ ထည့်ပါ။");
+                return false;
+            }
+            if (type === "expense" && category === "ဝင်ငွေ") category = "အခြား";
+            if (type === "income" && !category.includes("ဝင်ငွေ") && category !== "ဝင်ငွေ") {
+                // allow but keep user choice, fine
+            }
+
+            const newTx = {
+                id: Date.now(),
+                type: type,
+                amount: amount,
+                description: description,
+                category: category,
+                date: new Date().toISOString()
+            };
+            transactions.push(newTx);
+            saveToLocal();
+            // clear fields
+            document.getElementById("txAmount").value = "";
+            document.getElementById("txDesc").value = "";
+            document.getElementById("txAmount").focus();
+            updateUI();
+            return true;
+        }
+
+        function resetAllData() {
+            if (confirm("သေချာပါသလား။ မှတ်တမ်းအားလုံး ဖျက်ပစ်မှာဖြစ်ပါတယ်။")) {
+                transactions = [];
+                saveToLocal();
+                updateUI();
+            }
+        }
+
+        // PDF Export function (modern layout, only transaction list + summary)
+        async function exportToPDF() {
+            // Create a temporary container for PDF content (clean modern style)
+            const pdfContent = document.createElement('div');
+            pdfContent.style.padding = '20px';
+            pdfContent.style.fontFamily = "'Inter', 'Myanmar Text', sans-serif";
+            pdfContent.style.backgroundColor = '#ffffff';
+            pdfContent.style.color = '#0f172a';
+
+            // Header
+            pdfContent.innerHTML = `
+            <div style="text-align:center; margin-bottom:24px; border-bottom:2px solid #2e5a88; padding-bottom:16px;">
+                <h1 style="color:#1f4870;">📋 ငွေစာရင်းအစီရင်ခံစာ</h1>
+                <p style="color:#3b5c7e;">ထုတ်ယူသည့်နေ့: ${new Date().toLocaleString('my-MM')}</p>
+            </div>
+            <div style="display:flex; justify-content:space-between; gap:16px; margin-bottom:28px; flex-wrap:wrap;">
+                <div style="background:#f1f5f9; padding:12px 20px; border-radius:24px; flex:1;"><strong>လက်ကျန်ငွေ</strong><br><span style="font-size:26px; font-weight:800;">${document.getElementById("balanceTotal").innerText}</span> ကျပ်</div>
+                <div style="background:#f1f5f9; padding:12px 20px; border-radius:24px; flex:1;"><strong>စုစုဝင်ငွေ</strong><br><span style="font-size:26px; font-weight:800; color:#16a34a;">${document.getElementById("totalIncome").innerText}</span> ကျပ်</div>
+                <div style="background:#f1f5f9; padding:12px 20px; border-radius:24px; flex:1;"><strong>စုစုသုံးစရိတ်</strong><br><span style="font-size:26px; font-weight:800; color:#dc2626;">${document.getElementById("totalExpense").innerText}</span> ကျပ်</div>
+            </div>
+            <h3 style="margin-bottom:12px;">📌 ငွေလွှဲမှတ်တမ်းများ</h3>
+            <table style="width:100%; border-collapse:collapse; font-size:13px;">
+                <thead style="background:#eef2ff;">
+                    <tr><th style="padding:10px; text-align:left;">ဖော်ပြချက်</th><th style="padding:10px; text-align:left;">အမျိုးအစား</th><th style="padding:10px; text-align:right;">ပမာဏ</th><th style="padding:10px; text-align:left;">နေ့စွဲ</th></tr>
+                </thead>
+                <tbody>
+                    ${transactions.map(t => `
+                        <tr style="border-bottom:1px solid #e2e8f0;">
+                            <td style="padding:8px;">${escapeHtml(t.description)}</td>
+                            <td style="padding:8px;">${escapeHtml(t.category)}</td>
+                            <td style="padding:8px; text-align:right; font-weight:600; ${t.type === 'expense' ? 'color:#dc2626' : 'color:#16a34a'}">${t.type === 'expense' ? '-' : '+'}${t.amount.toLocaleString('en-US')} ကျပ်</td>
+                            <td style="padding:8px;">${new Date(t.date).toLocaleDateString('my-MM')}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+            <footer style="margin-top:32px; text-align:center; font-size:10px; color:#6c86a3;">Zawgyi Tracker မှ ထုတ်ယူသည် - ခေတ်မီငွေစာရင်း</footer>
+        `;
+
+            const opt = {
+                margin: [0.5, 0.5, 0.5, 0.5],
+                filename: `Expense_Report_${new Date().toISOString().slice(0, 19)}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, letterRendering: true },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(pdfContent).save();
+        }
+
+        function escapeHtml(str) {
+            if (!str) return "";
+            return str.replace(/[&<>]/g, function (m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        // filter chips event
+        function initFilters() {
+            const chips = document.querySelectorAll('.chip');
+            chips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    const filterVal = chip.getAttribute('data-filter');
+                    currentFilter = filterVal;
+                    chips.forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    updateUI();
+                });
+            });
+        }
+
+        // startup
+        function init() {
+            loadData();
+            initFilters();
+            updateUI();
+            document.getElementById("addTxBtn").addEventListener("click", addNewTransaction);
+            document.getElementById("resetDemoBtn").addEventListener("click", resetAllData);
+            document.getElementById("exportPDFbtn").addEventListener("click", exportToPDF);
+        }
+        init();
+    </script>
+</body>
+
+</html>

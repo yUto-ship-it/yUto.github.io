@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Kyaw Nyein Chan Htwe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .cv-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #fff;
+            display: grid;
+            grid-template-columns: 35% 65%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            min-height: 1100px;
+        }
+
+        /* Left Column */
+        .left-col {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 30px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-color);
+            margin: 0 auto 20px;
+            display: block;
+            object-fit: cover;
+        }
+
+        .left-col h2 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+            margin: 30px 0 15px;
+        }
+
+        .contact-info p {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        /* Right Column */
+        .right-col {
+            padding: 40px;
+        }
+
+        .header-info h1 {
+            font-size: 2.3rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .header-info h3 {
+            color: var(--accent-color);
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .summary {
+            margin-bottom: 30px;
+            text-align: justify;
+            font-size: 0.95rem;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 10px;
+            margin: 30px 0 15px;
+        }
+
+        .experience-item,
+        .edu-item {
+            margin-bottom: 20px;
+        }
+
+        .item-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .item-subtitle {
+            color: var(--accent-color);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .item-desc {
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .pdf-btn {
+            display: block;
+            margin: 0 auto 20px auto;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        /* ========== RESPONSIVE FOR MOBILE ========== */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .cv-container {
+                grid-template-columns: 1fr;
+                /* ဖုန်းမှာ column တစ်ခုတည်း */
+                min-height: auto;
+            }
+
+            .left-col {
+                padding: 20px;
+            }
+
+            .right-col {
+                padding: 20px;
+            }
+
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .header-info h1 {
+                font-size: 1.6rem;
+            }
+
+            .header-info h3 {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.1rem;
+            }
+
+            .item-title {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .pdf-btn {
+                width: 100%;
+                max-width: 100%;
+                
+            }
+            button{
+                float: right;
+            }
+        }
+
+        /* ပိုသေးတဲ့ဖုန်းအတွက် (480px အောက်) */
+        @media screen and (max-width: 480px) {
+            .left-col h2 {
+                font-size: 1rem;
+            }
+
+            .contact-info p {
+                font-size: 0.8rem;
+            }
+
+            .skill-list li {
+                font-size: 0.8rem;
+            }
+
+            .summary {
+                font-size: 0.85rem;
+            }
+
+            .item-desc {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ========== PRINT (PDF) ========== */
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+
+            .cv-container {
+                box-shadow: none;
+                width: 100%;
+                grid-template-columns: 35% 65%;
+                /* print မှာ two column ပြန်ဖြစ်မယ် */
+            }
+
+            .pdf-btn {
+                display: none !important;
+                /* PDF ထုတ်တဲ့အခါ button ပျောက်မယ် */
+            }
+
+            .profile-img {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .left-col {
+                print-color-adjust: exact;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cv-container">
+        <div class="left-col">
+            <img src="kyawphoto.jpg" alt="Profile" class="profile-img">
+
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> 09 673586673</p>
+                <p><i class="fas fa-envelope"></i> knchtwe@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Pyin OO Lwin, Myanmar</p>
+                <p><i class="fab fa-github"></i> github.com/yUto-ship-it</p>
+            </div>
+
+            <h2>Personal Info</h2>
+            <div class="contact-info">
+                <p>Age: 20 Years</p>
+                <p>Nationality: Burmese</p>
+                <p>Religion: Buddhist</p>
+                <p>Status: Single</p>
+            </div>
+
+            <h2>Technical Skills</h2>
+            <ul class="skill-list">
+                <li>HTML5 / CSS3</li>
+                <li>JavaScript (ES6+)</li>
+                <li>Python Programming</li>
+                <li>Responsive Web Design</li>
+                <li>Git & GitHub</li>
+                <li>VS Code</li>
+            </ul>
+
+            <h2>Soft Skills</h2>
+            <ul class="skill-list">
+                <li>Interpersonal Communication</li>
+                <li>Problem Solving</li>
+                <li>Time Management</li>
+                <li>Team Collaboration</li>
+                <li>Customer Service</li>
+            </ul>
+        </div>
+
+        <div class="right-col">
+            <div class="header-info">
+                <h1>KYAW NYEIN CHAN HTWE</h1>
+                <h3>Aspiring Web Developer</h3>
+            </div>
+            <div class="summary">
+                I am a highly motivated Computer Science student with a passion for building clean, user-friendly web
+                applications. I aim to leverage my technical skills in HTML, CSS, JavaScript, and Python to contribute
+                to innovative projects while gaining professional experience in a dynamic environment.
+            </div>
+
+            <h2 class="section-title">Education</h2>
+            <div class="edu-item">
+                <div class="item-title">
+                    <span>University of Computer Studies, Yangon (UCSY)</span>
+                    <span>2026 - Present</span>
+                </div>
+                <div class="item-subtitle">Bachelor of Computer Science (First Year)</div>
+            </div>
+
+            <h2 class="section-title">Work Experience</h2>
+            <div class="experience-item">
+                <div class="item-title">
+                    <span>Private Tutor (Grade-12)</span>
+                    <span>5 Months</span>
+                </div>
+                <div class="item-desc">
+                    Provided personalized academic support to Grade-12 students, focusing on complex concepts and
+                    helping them achieve their educational goals through effective communication and patience.
+                </div>
+            </div>
+
+            <h2 class="section-title">Key Projects</h2>
+            <div class="experience-item">
+                <div class="item-title">
+                    <span>Personal Portfolio Website</span>
+                </div>
+                <div class="item-subtitle">HTML, CSS, JavaScript</div>
+                <div class="item-desc">
+                    Designed and deployed a responsive personal portfolio to showcase my projects and technical
+                    abilities.
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-title">
+                    <span>Expense Tracker App</span>
+                </div>
+                <div class="item-subtitle">JavaScript, LocalStorage</div>
+                <div class="item-desc">
+                    Developed a tool for users to manage their daily income and expenses with data persistence.
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="item-title">
+                    <span>Smart Meter Calc</span>
+                </div>
+                <div class="item-subtitle">JavaScript, LocalStorage</div>
+                <div class="item-desc">
+                    Take Control of Your Electricity Bills! ⚡️
+                    Our Smart Meter Calculator helps you track consumption, predict costs, and save energy.
+                    No more surprises on your monthly bill.
+                    Try it now – it's free!
+                </div>
+            </div>
+
+            <h2 class="section-title">Languages</h2>
+            <div class="item-desc">
+                <strong>Burmese:</strong> Native <br>
+                <strong>English:</strong> Intermediate (Professional Working)
+            </div>
+            <button onclick="window.print();" class="pdf-btn">
+                📄 Download as PDF
+            </button>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

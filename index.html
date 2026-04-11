@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yUto-Portfolio</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="k.css">
+
+</head>
+
+<body>
+
+    <div class="bg-glow" style="top: -100px; right: -100px;"></div>
+    <div class="bg-glow" style="bottom: -100px; left: -100px;"></div>
+
+    <nav class="sidebar">
+        <i class='bx bxs-home active' onclick="scrollToSection('home')"></i>
+        <i class='bx bxs-user' onclick="scrollToSection('skills')"></i>
+        <i class='bx bxs-briefcase' onclick="scrollToSection('portfolio')"></i>
+        <i class='bx bxs-graduation' onclick="scrollToSection('education')"></i>
+        <i class='bx bxs-envelope' onclick="scrollToSection('contact')"></i>
+    </nav>
+
+    <section id="home" class="hero">
+        <img src="kyawphoto.jpg" alt="yUto" class="profile-img">
+        <h1>Hi, I'm <span>Kyaw Nyein Chan Htwe(yUto)</span></h1>
+        <h2>I'm a Beginner Web developer.</h2>
+        <p>I create beautiful, responsive web experiences using modern technologies. Passionate about clean code and
+            user-centered design.</p>
+        <div class="btn-group">
+            <a href="#portfolio" class="btn btn-primary">View My Work</a>
+            <a href="cv.html" class="btn btn-outline download-cv">
+                View My CV <i class='bx bxs-show'></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h1 style="margin-bottom: 40px;">My <span>Skills</span></h1>
+        <div class="skills-container">
+            <div class="skills-content">
+                <p style="margin-bottom: 30px; color: var(--text-gray);">
+                    I'm a passionate web developer with under 1 years of experience creating modern, responsive,.
+                </p>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>HTML</span><span>85%</span></div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>CSS</span><span>85%</span></div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>JavaScript</span><span>60%</span></div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 60%;"></div>
+                    </div>
+                </div>
+                <div class="skill-bar">
+                    <div class="skill-info"><span>Python</span><span>55%</span></div>
+                    <div class="bar-bg">
+                        <div class="bar-fill" style="width: 55%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 1; font-size: 5rem;">
+                <img id="hand" src="hand.jpg">
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h1>My <span>Portfolio</span></h1>
+        <p style="color: var(--text-gray);">A collection of my recent projects</p>
+
+        <div class="portfolio-grid">
+            <div class="project-card">
+                <a href="https://smart-meter-calc.netlify.app/">
+                    <div class="project-img"><img src="meter.png" />
+                    </div>
+                </a>
+
+                <h3>Smart Meter Bill Calculator</h3>
+                <p style="font-size: 0.8rem; color: var(--text-gray); margin: 10px 0;">Full-stack e-commerce solution
+                    with
+                    HTML ,CSS and javaScript.</p>
+                <div>
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <a href="https://smart-.netlify.app/">
+                    <div class="project-img"><img src="meter.png" />
+                    </div>
+                </a>
+
+                <h3>Smart Meter Bill Calculator</h3>
+                <p style="font-size: 0.8rem; color: var(--text-gray); margin: 10px 0;">Full-stack e-commerce solution
+                    with
+                    HTML ,CSS and javaScript.</p>
+                <div>
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <a href="https://expense-tracker-yuto.netlify.app/">
+                    <div class="project-img"><img src="tracker.png" />
+                    </div>
+                </a>
+
+                <h3>Expense Tracker for myanmar</h3>
+                <p style="font-size: 0.8rem; color: var(--text-gray); margin: 10px 0;">Full-stack e-commerce solution
+                    with
+                    HTML ,CSS and javaScript.</p>
+                <div>
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <a href="https://smart-meter-calc.netlify.app/">
+                    <div class="project-img"><img src="meter.png" />
+                    </div>
+                </a>
+
+                <h3>Smart Meter Bill Calculator</h3>
+                <p style="font-size: 0.8rem; color: var(--text-gray); margin: 10px 0;">Full-stack e-commerce solution
+                    with
+                    HTML ,CSS and javaScript.</p>
+                <div>
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <a href="https://smart-meter-calc.netlify.app/">
+                    <div class="project-img"><img src="meter.png" />
+                    </div>
+                </a>
+
+                <h3>Smart Meter Bill Calculator</h3>
+                <p style="font-size: 0.8rem; color: var(--text-gray); margin: 10px 0;">Full-stack e-commerce solution
+                    with
+                    HTML ,CSS and javaScript.</p>
+                <div>
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <a href="https://smart-meter-calc.netlify.app/">
+                    <div class="project-img"><img src="meter.png" />
+                    </div>
+                </a>
+
+                <h3>Smart Meter Bill Calculator</h3>
+                <p style="font-size: 0.8rem; color: var(--text-gray); margin: 10px 0;">Full-stack e-commerce solution
+                    with
+                    HTML ,CSS and javaScript.</p>
+                <div>
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <a href="https://smart-meter-calc.netlify.app/">
+                    <div class="project-img"><img src="meter.png" />
+                    </div>
+                </a>
+
+                <h3>Smart Meter Bill Calculator</h3>
+                <p style="font-size: 0.8rem; color: var(--text-gray); margin: 10px 0;">Full-stack e-commerce solution
+                    with
+                    HTML ,CSS and javaScript.</p>
+                <div>
+                    <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="education">
+        <h1 class="section-title" style="margin-bottom:15px;">Academic <span class="neon-text">Core</span></h1>
+        <div class="education-grid">
+            <div class="education-card">
+                <div class="card-header">
+                    <span id="edu-year"><span style="color: var(--primary-blue);">Current 2026, </span>The beginning of
+                        the Technological Journey </span>
+                    <i class='bx bx-chevron-down arrow-icon'></i>
+                </div>
+                <div class="edu-details">
+                    <h3 class="edu-title">Computer Science Degree</h3>
+                    <span class="edu-school">University of Computer studies, Yangon(UCSY)</span>
+                    <p class="edu-desc">After graduating high school with outstanding academic records, I pursued my
+                        passion for
+                        technology by enrolling at the University of Computer Studies, Yangon (UCSY), one of Myanmar’s
+                        premier
+                        technological institutions. Currently, I am dedicated to studying Computer Science and
+                        Technology at
+                        UCSY. My ultimate goal is to become a skilled IT professional who can actively contribute to the
+                        advancement of Myanmar’s technological landscape."
+                    </p>
+                </div>
+            </div>
+
+            <div class="education-card">
+                <div class="card-header">
+                    <span id="edu-year"><span style="color: var(--primary-blue);">(2022 - 2025) </span>Urban Transitions
+                        and Educational Maturity </span></span>
+                    <i class='bx bx-chevron-down arrow-icon'></i>
+                </div>
+                <div class="edu-details">
+                    <h3 class="edu-title">Urban Transitions and Educational Maturity</h3>
+                    <span class="edu-school">Interaction Design Academy</span>
+                    <p class="edu-desc">The year 2022, when I was 16 years old, marked a significant turning point in
+                        my life. Seeking a broader
+                        and more diverse educational environment, I made a definitive move to Pyin Oo Lwin to attend
+                        Grade 10.
+                        This transition to a new city was not just a change of location, but an opportunity to broaden
+                        my
+                        academic horizons.
+                        Subsequently, I returned to my hometown, Myitkyina, where I completed my senior high school
+                        years. I
+                        attended No. 9 Basic Education High School (BEHS-9, Myitkyina) for Grade 11 and pursued my final
+                        year,
+                        Grade 12, at Shwe Pyi Thit Private High School.
+                        The experience of moving between different cities and schools during these formative years has
+                        been
+                        invaluable. It has gifted me with the ability to adapt quickly to new environments and the
+                        essential
+                        skill of communicating effectively across diverse social circles. These transitions have
+                        fostered a
+                        sense of resilience and maturity that I carry with me into my current university life at UCSY.
+                    </p>
+                </div>
+            </div>
+            <div class="education-card">
+                <div class="card-header">
+                    <span id="edu-year"><span style="color: var(--primary-blue);">(2006 - 2010) </span>Beginnings and
+                        Early Childhood</span></span>
+                    <i class='bx bx-chevron-down arrow-icon'></i>
+                </div>
+                <div class="edu-details">
+                    <h3 class="edu-title">Beginnings and Early Childhood</h3>
+                    <span class="edu-school">Interaction Design Academy</span>
+                    <p class="edu-desc">My life journey began on November 20, 2006, in Myitkyina, the capital of Kachin
+                        State,
+                        situated along the scenic banks of the Ayeyarwady River. In 2010, at the age of four, my family
+                        and I
+                        relocated to Thabeikkyin.
+                        It was in this town that I spent my formative early years, cultivating the fundamental values
+                        and
+                        educational roots that would shape my future. These early experiences in Thabeikkyin laid a
+                        solid
+                        foundation for my growth, teaching me the importance of community and learning from a very young
+                        age.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <h1 style="margin-bottom:10px;">Contact <span>Me</span></h1>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's work together!</h3>
+                <p style="color: var(--text-gray);">I am available for freelance work and full-time positions. Reach out
+                    and let's build something amazing.</p>
+
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class='bx bxs-envelope'></i>
+                        <span>knchtwe@email.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class='bx bxs-phone'></i>
+                        <span>+95 9 673586673</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span>+95 9 673586673</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class='bx bxs-map'></i>
+                        <span>Pyin Oo Lwin, Myanmar</span>
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://www.facebook.com/share/1Cj6KyDR1V/"><i class="fa-brands fa-facebook"
+                                id="contact-icon"></i></a>
+                        <a href="https://www.tiktok.com/@yuto83229?_r=1&_t=ZS-95MkWdwy1DB"><i
+                                class="fa-brands fa-tiktok" id="contact-icon"></i></a>
+                        <a href="https://t.me/yuto487"><i class="fa-brands fa-telegram" id="contact-icon"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form id="myContactForm" action="https://formspree.io/f/xqegonpy" method="POST">
+                    <div class="input-box">
+                        <input type="text" placeholder="Your Name" name="name" required>
+                    </div>
+                    <div class="input-box">
+                        <input type="email" placeholder="Your Email" name="email" required>
+                    </div>
+                    <div class="input-box">
+                        <textarea placeholder="Your Message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="send-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="k.js"></script>
+</body>
+
+</html>
