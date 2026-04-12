@@ -14,11 +14,14 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             scroll-behavior: smooth;
         }
-
+        html{
+                 overscroll-behavior: none;
+        }
         body {
             background-color: var(--bg-color);
             color: var(--text-white);
             overflow-x: hidden;
+            overscroll-behavior: none;
         }
 
         /* --- Sidebar Navigation --- */
