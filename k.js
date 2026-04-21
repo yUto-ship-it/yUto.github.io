@@ -44,10 +44,7 @@ const observer = new IntersectionObserver((entries) => {
 cards.forEach(card => observer.observe(card));
 
 // Page load ဖြစ်တာနဲ့ ဒုတိယမြောက် (အလယ်က) card ဆီကို scroll လုပ်ပေးဖို့
-window.addEventListener('load', () => {
-    const middleIndex = Math.floor(cards.length / 2);
-    cards[middleIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-});
+
 // Smooth Scrolling with Active Link Update
 function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
@@ -195,3 +192,15 @@ $(document).ready(function () {
         }, 2000);
     });
 });
+
+const text = "Kyaw Nyein Chan Htwe(yUto)";
+const speed = 150;
+let i = 0;
+function textwrite() {
+    if (i < text.length) {
+        document.getElementById("text").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(textwrite, speed);
+    }
+}
+window.onload = textwrite;
