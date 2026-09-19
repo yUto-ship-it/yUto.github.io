@@ -568,6 +568,21 @@
         border-top: 1px solid rgba(255, 255, 255, 0.05);
       }
 
+      /* Keep the footer link visually identical to the surrounding text. */
+      .footer a {
+        color: inherit;
+        font: inherit;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+      }
+
       /* --- Responsive --- */
       @media (max-width: 768px) {
         section {
@@ -670,14 +685,32 @@
         gap: 0.5rem;
         padding: 0.4rem 0.9rem;
         background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--border-glass);
+        border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 10px;
         transition: all 0.2s ease;
+        white-space: nowrap;
+        flex-shrink: 0;
       }
 
       .btn-github:hover {
         background: rgba(255, 255, 255, 0.1);
-        border-color: var(--text-muted);
+        border-color: var(--text-gray);
+      }
+
+      @media (max-width: 480px) {
+        .project-links {
+          gap: 5px;
+        }
+
+        .project-links .tag {
+          margin-right: 0;
+        }
+
+        .project-links .btn-github {
+          width: 100%;
+          justify-content: center;
+          margin-top: 4px;
+        }
       }
     </style>
   </head>
@@ -783,7 +816,7 @@
           <p style="font-size: 0.8rem; color: var(--text-gray); margin: 10px 0">
             An electricity bill calculator for Myanmar using smart meter rates.
           </p>
-          <div>
+          <div class="project-links">
             <span class="tag">HTML</span><span class="tag">CSS</span
             ><span class="tag">JavaScript</span><a href="https://github.com/yUto-ship-it/smart-meter-calc" target="_blank" class="btn-github"><i class="fab fa-github"></i> Code</a>
           </div>
@@ -799,7 +832,7 @@
           <p style="font-size: 0.8rem; color: var(--text-gray); margin: 10px 0">
             A travel guide web app for exploring destinations worldwide.
           </p>
-          <div>
+          <div class="project-links">
             <span class="tag">HTML</span><span class="tag">CSS</span
             ><span class="tag">JavaScript</span><a href="https://github.com/yUto-ship-it/wanderWise360" target="_blank" class="btn-github"><i class="fab fa-github"></i> Code</a>
           </div>
@@ -815,7 +848,7 @@
           <p style="font-size: 0.8rem; color: var(--text-gray); margin: 10px 0">
             A personal finance tracker designed for Myanmar users.
           </p>
-          <div>
+          <div class="project-links">
             <span class="tag">HTML</span><span class="tag">CSS</span
             ><span class="tag">JavaScript</span
             ><a href="https://github.com/yUto-ship-it/tracker" target="_blank" class="btn-github"
@@ -836,7 +869,7 @@
             student attendance. It features an admin dashboard with real‑time
             tracking and CSV export for efficient record management.
           </p>
-          <div>
+          <div class="project-links">
             <span class="tag">HTML</span><span class="tag">CSS</span
             ><span class="tag">JavaScript</span>
             <a
@@ -1026,7 +1059,7 @@
 
     <!-- Footer -->
     <div class="footer">
-      <p>&copy; 2026 Kyaw Nyein Chan Htwe (yUto). All Rights Reserved.</p>
+      <p>&copy; 2026 Kyaw Nyein Chan Htwe (yUto).<a href="https://graceful-gaufre-0ba0e3.netlify.app/"> All Rights</a> <a href="Yuto.site — Building Practical Web Experiences.pptx" download>Reserved</a>.</p>
     </div>
 
     <script>
