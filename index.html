@@ -52,7 +52,10 @@
       }
 
       body {
-        background-color: var(--bg-color);
+        background:
+          radial-gradient(circle at 15% 10%, rgba(14, 165, 233, 0.08), transparent 28%),
+          radial-gradient(circle at 90% 85%, rgba(56, 189, 248, 0.06), transparent 25%),
+          var(--bg-color);
         color: var(--text-white);
         overflow-x: hidden;
         overscroll-behavior: none;
@@ -113,21 +116,44 @@
       }
 
       /* --- Hero Section --- */
+      .hero-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 34px;
+        width: 100%;
+        max-width: 900px;
+        text-align: left;
+      }
+
+      .hero-copy {
+        max-width: 600px;
+        padding: 28px 30px;
+        border: 1px solid rgba(14, 165, 233, 0.14);
+        border-radius: 24px;
+        background: rgba(17, 26, 46, 0.42);
+        box-shadow: 0 18px 50px rgba(2, 8, 23, 0.22);
+        backdrop-filter: blur(6px);
+      }
+
       .profile-img {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        border: 4px solid var(--primary-blue);
-        margin: 0 auto 20px;
+        width: 176px;
+        height: 218px;
+        border-radius: 28px 8px 28px 8px;
+        border: 3px solid var(--primary-blue);
+        margin: 0;
         display: block;
+        flex: 0 0 auto;
         object-fit: cover;
         box-shadow: 0 0 25px rgba(14, 165, 233, 0.5);
-        padding: 5px;
-        transition: transform 0.3s ease;
+        padding: 4px;
+        background: rgba(14, 165, 233, 0.08);
+        transition: transform 0.3s ease, border-radius 0.3s ease;
       }
 
       .profile-img:hover {
-        transform: scale(1.05);
+        transform: translateY(-4px) rotate(1deg);
+        border-radius: 8px 28px 8px 28px;
       }
 
       .hero h1 {
@@ -187,11 +213,31 @@
         opacity: 0.9;
       }
 
+      .btn:active,
+      .send-btn:active,
+      .btn-github:active {
+        transform: scale(0.97);
+      }
+
       /* --- Section Titles --- */
       .section-title,
       section > h1 {
         font-size: 2.2rem;
         margin-bottom: 10px;
+        letter-spacing: 0.02em;
+        position: relative;
+      }
+
+      section > h1::after,
+      .section-title::after {
+        content: "";
+        display: block;
+        width: 46px;
+        height: 3px;
+        margin: 14px auto 0;
+        border-radius: 999px;
+        background: var(--primary-blue);
+        box-shadow: 0 0 12px rgba(14, 165, 233, 0.6);
       }
 
       section > h1 span,
@@ -208,6 +254,10 @@
         text-align: left;
         width: 100%;
         max-width: 1000px;
+        padding: 28px;
+        border: 1px solid rgba(14, 165, 233, 0.12);
+        border-radius: 22px;
+        background: rgba(17, 26, 46, 0.32);
       }
 
       .skills-content {
@@ -359,83 +409,6 @@
         pointer-events: none;
       }
 
-      /* --- Education Section --- */
-      .education-grid {
-        max-width: 800px;
-        width: 100%;
-        margin: 20px auto 0;
-        text-align: left;
-      }
-
-      .education-card {
-        background: var(--card-bg);
-        border-radius: 15px;
-        border: 1px solid rgba(14, 165, 233, 0.3);
-        transition: 0.3s;
-        cursor: pointer;
-        padding: 25px;
-        margin: 0 0 15px 0;
-      }
-
-      .education-card:hover {
-        border-color: var(--primary-blue);
-        transform: scale(1.02);
-        box-shadow: 0 0 20px rgba(14, 165, 233, 0.15);
-      }
-
-      .edu-date {
-        color: var(--primary-blue);
-        font-weight: 600;
-        font-size: 0.9rem;
-      }
-
-      .edu-title {
-        font-size: 1.2rem;
-        margin: 8px 0;
-      }
-
-      .edu-school {
-        color: var(--text-gray);
-        font-style: italic;
-      }
-
-      .edu-desc {
-        color: var(--text-gray);
-        line-height: 1.7;
-        margin-top: 10px;
-        font-size: 0.9rem;
-      }
-
-      .edu-details {
-        display: none;
-        margin-top: 15px;
-      }
-
-      .card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .card-header span {
-        font-size: 0.95rem;
-      }
-
-      .arrow-icon {
-        font-size: 1.5rem;
-        color: var(--primary-blue);
-        transition: 0.3s;
-      }
-
-      .rotate {
-        transform: rotate(180deg);
-      }
-
-      .active-card {
-        border-color: var(--primary-blue) !important;
-        box-shadow: var(--glow-shadow);
-      }
-
       /* --- Contact Section --- */
       .contact-container {
         display: grid;
@@ -514,6 +487,7 @@
         padding: 30px;
         border-radius: 20px;
         border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 16px 42px rgba(2, 8, 23, 0.24);
       }
 
       .input-box {
@@ -603,6 +577,16 @@
           width: auto;
           padding: 10px 20px;
           gap: 20px;
+        }
+
+        .hero-content {
+          flex-direction: column;
+          text-align: center;
+          gap: 22px;
+        }
+
+        .hero-copy {
+          max-width: 600px;
         }
 
         .hero h1 {
@@ -729,32 +713,35 @@
       <i class="bx bxs-home active" onclick="scrollToSection('home')"></i>
       <i class="bx bxs-user" onclick="scrollToSection('skills')"></i>
       <i class="bx bxs-briefcase" onclick="scrollToSection('portfolio')"></i>
-      <i class="bx bxs-graduation" onclick="scrollToSection('education')"></i>
       <i class="bx bxs-envelope" onclick="scrollToSection('contact')"></i>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-      <img
-        src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663623309572/OADKGNvEcZnuPUGN.jpg"
-        alt="Kyaw Nyein Chan Htwe"
-        class="profile-img"
-      />
-      <h1>Hi, I'm <span id="text"></span></h1>
-      <h2>Beginner Web Developer & CS Student</h2>
-      <p>
-        I create beautiful, responsive web experiences using modern
-        technologies. Passionate about clean code and user-centered design.
-        Currently studying Computer Science at UCSY.
-      </p>
-      <div class="btn-group">
-        <a href="#portfolio" class="btn btn-primary">View My Work</a>
-        <a
-          href="https://yuto-cv.netlify.app/"
-          class="btn btn-outline download-cv"
-        >
-          View My CV <i class="bx bxs-show"></i>
-        </a>
+      <div class="hero-content">
+        <img
+          src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663623309572/OADKGNvEcZnuPUGN.jpg"
+          alt="Kyaw Nyein Chan Htwe"
+          class="profile-img"
+        />
+        <div class="hero-copy">
+          <h1>Hi, I'm <span id="text"></span></h1>
+          <h2>Beginner Web Developer & CS Student</h2>
+          <p>
+            I create beautiful, responsive web experiences using modern
+            technologies. Passionate about clean code and user-centered design.
+            Currently studying Computer Science at UCSY.
+          </p>
+          <div class="btn-group">
+            <a href="#portfolio" class="btn btn-primary">View My Work</a>
+            <a
+              href="https://yuto-cv.netlify.app/"
+              class="btn btn-outline download-cv"
+            >
+              View My CV <i class="bx bxs-show"></i>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -888,100 +875,6 @@
       </div>
     </section>
 
-    <!-- Education Section -->
-    <section id="education">
-      <h1 class="section-title" style="margin-bottom: 15px">
-        Academic <span class="neon-text">Core</span>
-      </h1>
-      <div class="education-grid">
-        <div class="education-card">
-          <div class="card-header">
-            <span
-              ><span style="color: var(--primary-blue)">Current 2026, </span>The
-              beginning of the Technological Journey</span
-            >
-            <i class="bx bx-chevron-down arrow-icon"></i>
-          </div>
-          <div class="edu-details">
-            <h3 class="edu-title">Computer Science Degree</h3>
-            <span class="edu-school"
-              >University of Computer Studies, Yangon (UCSY)</span
-            >
-            <p class="edu-desc">
-              After graduating high school with outstanding academic records, I
-              pursued my passion for technology by enrolling at the University
-              of Computer Studies, Yangon (UCSY), one of Myanmar's premier
-              technological institutions. Currently, I am dedicated to studying
-              Computer Science and Technology at UCSY. My ultimate goal is to
-              become a skilled IT professional who can actively contribute to
-              the advancement of Myanmar's technological landscape.
-            </p>
-          </div>
-        </div>
-
-        <div class="education-card">
-          <div class="card-header">
-            <span
-              ><span style="color: var(--primary-blue)">(2022 - 2025) </span
-              >Urban Transitions and Educational Maturity</span
-            >
-            <i class="bx bx-chevron-down arrow-icon"></i>
-          </div>
-          <div class="edu-details">
-            <h3 class="edu-title">
-              Urban Transitions and Educational Maturity
-            </h3>
-            <span class="edu-school"
-              >Multiple Schools - Pyin Oo Lwin & Myitkyina</span
-            >
-            <p class="edu-desc">
-              The year 2022, when I was 16 years old, marked a significant
-              turning point in my life. Seeking a broader and more diverse
-              educational environment, I made a definitive move to Pyin Oo Lwin
-              to attend Grade 10. This transition to a new city was not just a
-              change of location, but an opportunity to broaden my academic
-              horizons. Subsequently, I returned to my hometown, Myitkyina,
-              where I completed my senior high school years. I attended No. 9
-              Basic Education High School (BEHS-9, Myitkyina) for Grade 11 and
-              pursued my final year, Grade 12, at Shwe Pyi Thit Private High
-              School. The experience of moving between different cities and
-              schools during these formative years has been invaluable. It has
-              gifted me with the ability to adapt quickly to new environments
-              and the essential skill of communicating effectively across
-              diverse social circles. These transitions have fostered a sense of
-              resilience and maturity that I carry with me into my current
-              university life at UCSY.
-            </p>
-          </div>
-        </div>
-
-        <div class="education-card">
-          <div class="card-header">
-            <span
-              ><span style="color: var(--primary-blue)">(2006 - 2010) </span
-              >Beginnings and Early Childhood</span
-            >
-            <i class="bx bx-chevron-down arrow-icon"></i>
-          </div>
-          <div class="edu-details">
-            <h3 class="edu-title">Beginnings and Early Childhood</h3>
-            <span class="edu-school">Myitkyina & Thabeikkyin</span>
-            <p class="edu-desc">
-              My life journey began on November 20, 2006, in Myitkyina, the
-              capital of Kachin State, situated along the scenic banks of the
-              Ayeyarwady River. In 2010, at the age of four, my family and I
-              relocated to Thabeikkyin. It was in this town that I spent my
-              formative early years, cultivating the fundamental values and
-              educational roots that would shape my future. These early
-              experiences in Thabeikkyin laid a solid foundation for my growth,
-              teaching me the importance of community and learning from a very
-              young age.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Contact Section -->
     <section id="contact">
       <h1 style="margin-bottom: 10px">Contact <span>Me</span></h1>
@@ -1032,7 +925,7 @@
         <div class="contact-form">
           <form
             id="myContactForm"
-            action="https://formspree.io/f/xqegonpy"
+            action="/api/send-message"
             method="POST"
           >
             <div class="input-box">
@@ -1146,6 +1039,7 @@
           e.preventDefault();
           const button = this.querySelector(".send-btn");
           const formData = new FormData(this);
+          const payload = Object.fromEntries(formData.entries());
 
           button.innerHTML =
             'Sending... <i class="bx bx-loader-alt bx-spin"></i>';
@@ -1155,8 +1049,8 @@
           try {
             const response = await fetch(this.action, {
               method: "POST",
-              body: formData,
-              headers: { Accept: "application/json" },
+              headers: { "Content-Type": "application/json", Accept: "application/json" },
+              body: JSON.stringify(payload),
             });
 
             if (response.ok) {
@@ -1170,10 +1064,11 @@
               });
               this.reset();
             } else {
+              const errorData = await response.json().catch(() => ({}));
               Swal.fire({
                 icon: "error",
                 title: "Oops!",
-                text: "Something went wrong. Please try again.",
+                text: errorData.error || "Something went wrong. Please try again.",
                 background: "#111a2e",
                 color: "#f8fafc",
                 confirmButtonColor: "#0ea5e9",
@@ -1195,15 +1090,6 @@
           }
         });
       }
-
-      // --- Education Accordion ---
-      $(document).ready(function () {
-        $(".education-card").on("click", function () {
-          $(this).find(".edu-details").slideToggle(300);
-          $(this).find(".arrow-icon").toggleClass("rotate");
-          $(this).toggleClass("active-card");
-        });
-      });
 
       // --- Typing Animation ---
       const text = "Kyaw Nyein Chan Htwe (yUto)";
