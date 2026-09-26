@@ -1064,11 +1064,19 @@
               });
               this.reset();
             } else {
-              const errorData = await response.json().catch(() => ({}));
+              const responseText = await response.text();
+              let errorData = {};
+              try {
+                errorData = JSON.parse(responseText);
+              } catch {
+                // Vercel may return an HTML error page when the function is not deployed.
+              }
               Swal.fire({
                 icon: "error",
                 title: "Oops!",
-                text: errorData.error || "Something went wrong. Please try again.",
+                text:
+                  errorData.error ||
+                  `Message service returned an error (${response.status}). Please check the Vercel API deployment.`,
                 background: "#111a2e",
                 color: "#f8fafc",
                 confirmButtonColor: "#0ea5e9",
